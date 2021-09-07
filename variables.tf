@@ -22,12 +22,6 @@ variable "vswitch_id" {
   default     = ""
 }
 
-variable "security_group_ids" {
-  description = "A list of security group ids to associate with."
-  type        = list(string)
-  default     = []
-}
-
 variable "instance_type" {
   description = "The specification of the instance type."
   type        = string

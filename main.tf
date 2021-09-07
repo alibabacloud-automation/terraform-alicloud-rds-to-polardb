@@ -33,7 +33,7 @@ resource "alicloud_eip" "default" {
 resource "alicloud_instance" "default" {
   availability_zone          = var.availability_zone
   instance_name              = var.name
-  security_groups            = var.security_group_ids
+  security_groups            = [alicloud_security_group.default.id]
   vswitch_id                 = var.vswitch_id
   instance_type              = var.instance_type
   system_disk_category       = var.system_disk_category
