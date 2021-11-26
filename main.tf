@@ -20,7 +20,7 @@ resource "alicloud_slb_load_balancer" "default" {
   address_type       = var.slb_address_type
   load_balancer_spec = var.slb_spec
   vswitch_id         = alicloud_vswitch.default.id
-  tags               = {
+  tags = {
     info = var.slb_tags_info
   }
 }
@@ -34,7 +34,7 @@ resource "alicloud_instance" "default" {
   availability_zone          = var.availability_zone
   instance_name              = var.name
   security_groups            = [alicloud_security_group.default.id]
-  vswitch_id                 = var.vswitch_id
+  vswitch_id                 = alicloud_vswitch.default.id
   instance_type              = var.instance_type
   system_disk_category       = var.system_disk_category
   system_disk_name           = var.system_disk_name
@@ -42,26 +42,26 @@ resource "alicloud_instance" "default" {
   image_id                   = var.image_id
   internet_max_bandwidth_out = var.internet_max_bandwidth_out
   data_disks {
-    name        = var.name
+    name        = var.data_disks_name
     size        = var.ecs_size
     category    = var.category
     description = var.description
-    encrypted   = true
+    encrypted   = var.encrypted
   }
 }
 
 resource "alicloud_polardb_cluster" "default" {
-  db_type       = "MySQL"
+  db_type       = var.db_type
   db_version    = var.db_version
   pay_type      = var.pay_type
   db_node_class = var.db_node_class
-  vswitch_id    = var.vswitch_id
-  description   = var.description
+  vswitch_id    = alicloud_vswitch.default.id
+  description   = var.polardb_cluster_description
 }
 
 resource "alicloud_polardb_database" "default" {
   db_cluster_id = alicloud_polardb_cluster.default.id
-  db_name       = var.name
+  db_name       = var.db_name
 }
 
 resource "alicloud_db_instance" "default" {
