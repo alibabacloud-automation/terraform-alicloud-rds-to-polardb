@@ -26,7 +26,7 @@ module "example" {
   source            = "terraform-alicloud-modules/rds-to-polardb/alicloud"
   name              = "tf-rds-to-polardb"
   instance_type     = "ecs.n4.large"
-  db_version        = "8.0"
+  db_version        = "5.6"
   db_node_class     = "polar.mysql.x4.large"
   rds_instance_type = "rds.mysql.s3.large"
   engine_version    = "5.6"

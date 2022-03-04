@@ -12,13 +12,13 @@ data "alicloud_instance_types" "default" {
 data "alicloud_polardb_node_classes" "default" {
   pay_type   = var.pay_type
   db_type    = "MySQL"
-  db_version = "8.0"
+  db_version = "5.6"
   zone_id    = data.alicloud_polardb_zones.default.zones.0.id
 }
 
 data "alicloud_db_instance_classes" "default" {
   engine         = "MySQL"
-  engine_version = "8.0"
+  engine_version = "5.6"
 }
 
 module "example" {
@@ -54,7 +54,7 @@ module "example" {
 
   #alicloud_polardb_cluster
   db_type                     = "MySQL"
-  db_version                  = "8.0"
+  db_version                  = "5.6"
   pay_type                    = var.pay_type
   db_node_class               = data.alicloud_polardb_node_classes.default.classes.0.supported_engines.0.available_resources.0.db_node_class
   polardb_cluster_description = var.polardb_cluster_description
@@ -64,7 +64,7 @@ module "example" {
 
   #alicloud_db_instance
   engine               = "MySQL"
-  engine_version       = "8.0"
+  engine_version       = "5.6"
   rds_instance_type    = data.alicloud_db_instance_classes.default.instance_classes.0.instance_class
   instance_storage     = var.instance_storage
   instance_charge_type = var.instance_charge_type
