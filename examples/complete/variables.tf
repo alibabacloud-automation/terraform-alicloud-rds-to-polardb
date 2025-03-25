@@ -1,6 +1,8 @@
 #vpc
 variable "name" {
-  default = "tf-test-rds-to-polardb"
+  description = "The name of resources"
+  type        = string
+  default     = "tf-test-rds-to-polardb"
 }
 
 #alicloud_slb_load_balancer

@@ -23,12 +23,6 @@ variable "availability_zone" {
   default     = ""
 }
 
-variable "vswitch_id" {
-  description = "VSwitch variables, if vswitch_id is empty, then the net_type = classic."
-  type        = string
-  default     = ""
-}
-
 #alicloud_slb_load_balancer
 variable "slb_address_type" {
   description = "The specification of the slb intranet."
